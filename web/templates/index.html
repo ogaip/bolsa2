@@ -1,0 +1,111 @@
+{% load static %}
+{% load local_currency %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas Laborales - Empresa XYZ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'assets/web/css/web.css' %}">
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-dark text-white p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="#" class="navbar-brand">Empresa XYZ</a>
+            <nav>
+                <a href="#" class="text-white me-3">Inicio</a>
+                <a href="#" class="text-white me-3">Sobre Nosotros</a>
+                <a href="#" class="text-white me-3">Contacto</a>
+                <a href="#" class="btn btn-primary">Iniciar Sesión</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="banner text-center text-white d-flex align-items-center" style="background: url('{% static 'assets/web/img/banner3.jpg' %}') no-repeat center center/cover; height: 400px;">
+        <div class="container">
+            <h1 class="display-4">Encuentra tu próximo empleo</h1>
+            <p class="lead">Miles de ofertas laborales esperan por ti</p>
+            <a href="#ofertas" class="btn btn-lg btn-light mt-3">Ver Ofertas</a>
+        </div>
+    </section>
+
+    <!-- Ofertas Destacadas -->
+    <section class="mt-5 container">
+        <h2 class="text-center mb-4">Ofertas Laborales Destacadas</h2>
+        <div class="row">
+            <!-- Card de oferta -->
+            {% for pub in publicacion %}
+            
+            <div class="col-md-12 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ pub.titulo }}</h5>
+                        <p class="card-text">Empresa: {{ pub.empresa }}</p>
+                        <p class="card-text">Puesto: {{ pub.puesto }}</p>
+                        <p class="card-text">Horario: {{ pub.horario }}</p>
+                        <p class="card-text">Modalidad: {{ pub.modalidad }}</p>
+                        <p class="card-text">Requisitos:</p>
+                        <ul>
+                            <li>
+                                
+                            </li>
+                            
+                                                    </ul>
+                        <ul>
+                            
+                            {% comment %} <li>{{ bene.nombre }}</li> {% endcomment %}
+                            
+                        </ul>
+                        <p class="card-text">Tareas: {{ pub.tareas }}</p>
+                        <img src="{{ pub.imagen }}" alt="">              
+                        <label for="fecha">Fecha de Publicacion: </label>
+                        <p id="fecha" class="card-text">{{ pub.fecha_creacion }}</p>
+                        <label for="salario"></label>
+                        <p id="salario" class="card-text">Gs {{ pub.salario|local_currency }}</p>
+                        <a href="{% url 'ver' pub.id %}" class="btn btn-primary">Ver Más</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- Repetir las tarjetas según sea necesario -->
+        </div>
+    </section>
+
+    <!-- Listado de Ofertas -->
+    <section id="ofertas" class="mt-5 container">
+        <h2 class="text-center mb-4">Todas las Ofertas Laborales</h2>
+        <!-- Filtro de búsqueda -->
+        <div class="mb-4">
+            <input type="text" class="form-control" placeholder="Buscar por título o empresa...">
+        </div>
+        <!-- Listado -->
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                <div>
+                    <h5>Analista de Sistemas</h5>
+                    <p class="mb-0">Empresa XYZ - Asunción, Paraguay</p>
+                </div>
+                <span class="badge bg-primary">Full-time</span>
+            </a>
+            <!-- Repetir el enlace para otras ofertas -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center p-4 mt-5">
+        <p>© 2024 Empresa XYZ. Todos los derechos reservados.</p>
+        <div class="social-links">
+            <a href="#" class="text-white me-2">Facebook</a>
+            <a href="#" class="text-white me-2">Twitter</a>
+            <a href="#" class="text-white">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>

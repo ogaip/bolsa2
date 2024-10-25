@@ -1,0 +1,12 @@
+{% extends 'layout/base.html' %}
+{% block title %}Editar Publicación{% endblock title %}
+{% block content %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'listar' %}" class="btn btn-primary">Volver</a>
+    </form>
+
+{% endblock content %}

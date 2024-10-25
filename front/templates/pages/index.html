@@ -1,0 +1,17 @@
+{% extends "layout/base.html" %}
+{% block title %}
+    Inicio
+{% endblock title %}
+{% block content %}
+    <h1 class="text-center">¡ESTÁS AUTENTICADO! chau</h1>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        {% if user.is_staff == False %}
+            <a href="{% url 'perfil' perfil.id %}">Perfil</a>
+        {% else %}
+            <a href="{% url 'admin' %}">Admin</a>
+        {% endif %}
+        
+        <button type="submit" class="btn btn-primary">Cerrar Sesión</button>
+    </form>
+{% endblock content %}

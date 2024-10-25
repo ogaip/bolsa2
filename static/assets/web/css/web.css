@@ -1,0 +1,37 @@
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  color: #fff !important;
+  background: rgb(122, 122, 122);
+  background: linear-gradient(
+    0deg,
+    rgba(122, 122, 122, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.banner {
+  color: #3f3f3f;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #aaaaaa;
+}
+
+footer .social-links a:hover {
+  text-decoration: underline;
+}
+
+section {
+  background: #333;
+}

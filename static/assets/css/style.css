@@ -1,0 +1,29 @@
+.user {
+    align-content: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px;    
+}
+
+.user-bg {
+    background-color: rgba(63, 63, 63, 0.1);
+    border-radius: 10px;
+    width: 100%;
+}
+
+.admin {
+    align-content: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px;    
+}
+
+.admin-bg {
+    background: rgba(5, 212, 15, 0.2);
+    border-radius: 10px;
+    width: 100%;
+}

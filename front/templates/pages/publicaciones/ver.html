@@ -1,0 +1,46 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block title %}
+    Ver Publicación
+{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+{% endblock css %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Ver Publicación</h1>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title text-bold">{{ publicacion.titulo }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>{{ publicacion.contenido }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p>Creado: {{ publicacion.fecha_creacion }}</p>
+                        {% if publicacion.fecha_moficaicion|time != publicacion.fecha_creacion|time %}
+                            <p>Actualizado: {{ publicacion.fecha_modificacion }}</p>
+                        {% endif %}
+                        {% if is_staff == True %}
+                            <div class="row admin-bg">
+                                <div class="admin">
+
+                                    <a href="{% url 'modo_admin' publicacion.id %}"><i class="fa fa-edit" aria-hidden="true"></i> Editar Como Administrador</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="row user-bg">
+                                <div class="user">
+                                    <a href="{% url 'listar' %}" class="btn btn-info btn-sm mr-2"><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
+                                    <a href="{% url 'editar' publicacion.id %}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

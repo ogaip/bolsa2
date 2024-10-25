@@ -1,0 +1,93 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+    Listar Publicaciones
+{% endblock title %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Listar Publicaciones</h1>
+                <table class="table table-striped">
+                    <thead class="text-center">
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Contenido</th>
+                            <th>Estado</th>
+                            <th>Fecha de Creación</th>
+                            <th>Fecha de Actualización</th>
+                            <th class="col-2">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for active in publicaciones_activas %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'ver' active.id %}">{{ active.titulo }}</a>
+                                </td>
+                                <td>{{ active.contenido }}</td>
+                                <td>{{ active.estado }}</td>
+                                <td>{{ active.fecha_creacion }}</td>
+                                <td>{{ active.fecha_modificacion }}</td>
+                                <td class="col-2 align-content-center">
+                                    <div class="row">
+                                        <a href="{% url 'editar' active.id %}"
+                                           class="btn btn-sm btn-warning mr-1">Editar</a>
+                                        <form action="{% url 'eliminar' active.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-sm btn-danger">Despublicar</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Listar Publicaciones</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Contenido</th>
+                            <th>Estado</th>
+                            <th>Fecha de Creación</th>
+                            <th>Fecha de Actualización</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for inactive in publicaciones_inactivas %}
+                            {% if inactive.eliminado == False %}
+                            
+                            <tr>
+                                <td>
+                                    <a href="{% url 'ver' inactive.id %}">{{ inactive.titulo }}</a>
+                                </td>
+                                <td>{{ inactive.contenido }}</td>
+                                <td>{{ inactive.estado }}</td>
+                                <td>{{ inactive.fecha_creacion }}</td>
+                                <td>{{ inactive.fecha_modificacion }}</td>
+                                <td>
+                                    <form action="{% url 'rePublicar' inactive.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-secondary">Solicitar Publicacion</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{% url 'eliminacion_definitiva' inactive.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar Definitivamente</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

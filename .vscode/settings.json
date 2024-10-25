@@ -1,0 +1,17 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "database": "${workspaceFolder:bolsa2}/db.sqlite3",
+      "name": "ogaip"
+    },
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "ogaip2",
+      "database": "${workspaceFolder:bolsa2}/db.sqlite3"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
+}
